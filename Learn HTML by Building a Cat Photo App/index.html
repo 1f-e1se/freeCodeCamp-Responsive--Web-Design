@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- 用于指定文档的字符编码 -->
     <meta charset="utf-8">
+    <!-- 
+    <title> 元素定义了 HTML 文档的标题 
+    它会显示在浏览器标签页的标题栏或窗口标题栏上
+    当用户将页面添加到**书签（收藏夹）**时，通常也会使用这个标题
+    在搜索引擎结果中，这个标题通常会作为页面的主标题显示
+    -->
     <title>CatPhotoApp</title>
   </head>
   <body>
     <main>
       <h1>CatPhotoApp</h1>
+      <!-- 
+      注意点: 
+      1.section标签表示的是一个独立的内容区块
+      2.section标签不一定非要在一级标题下使用,section内部可以包含h2,h3等标题
+      3.section标签的使用主要取决于你要怎么组织页面的内容结构和语义
+      4.一个大的section内部,又可以用不同的小的section来组织不同的子主题
+       -->
       <section>
         <h2>Cat Photos</h2>
         <p>Everyone loves <a href="https://cdn.freecodecamp.org/curriculum/cat-photo-app/running-cats.jpg">cute cats</a> online!</p>
+
+        <!-- 
+        a标签中的target属性的作用:当用户点击链接的时候,链接的文档从何处打开
+
+        target常见的属性值:
+        1._self(默认值):在当前的窗口或者标签页当开链接
+        2._blank:在新的窗口或者标签页打开链接
+        3._parent:在父框架集中打开链接,主要用于使用frameset或者iframe的网页,如果当前文档没有父框架,则其行为和_self相同
+        4._top:在整个浏览窗口中打开链接的文档(取消所有框架),这个值也主要用于frameset和iframe的网页,它会跳出所有嵌套的框架,在最顶级的浏览上下文中打开链接
+        5.framename:在指定名称的框架中打开链接的文档。如果你在页面中定义了具名的 iframe 或 frame（例如 <iframe name="myFrame">），你可以将 target 设置为该名称，链接就会在该特定的框架中打开。
+
+        rel="noopener noreferrer"
+        1.当使用 target="_blank" 时，建议同时添加 rel="noopener noreferrer" 属性,
+        2.这个属性可以防止新打开的页面访问原始页面（你的网站）的 window.opener 属性
+        3.如果没有 noopener，新页面可以通过 window.opener 访问你的页面，并可能进行一些恶意操作，例如将你的页面重定向到钓鱼网站（这被称为 "tabnabbing" 或 "reverse tabnabbing" 攻击）。
+        4.现代浏览器（例如Chrome、Firefox等）对于 target="_blank" 的链接已经默认增加了 noopener 的行为，但为了兼容性和最佳实践，手动添加它仍然是一个好习惯。
+        -->
         <p>See more <a target="_blank" href="https://freecatphotoapp.com">cat photos</a> in our gallery.</p>
-        <a href="https://freecatphotoapp.com"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
+        <!-- 
+        下面的代码段段作用: 将一张图片变成一个可以点击的链接
+        -->
+        <a href="https://freecatphotoapp.com">
+          <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back.">
+        </a>
       </section>
       <section>
         <h2>Cat Lists</h2>
@@ -21,6 +57,19 @@
           <li>laser pointers</li>
           <li>lasagna</li>
         </ul>
+        <!-- 
+        figure和figcaption标签都是语义化标签:
+        1.主要作用是为了更好的组织和描述文档中的独立内容,为其提供标题和说明
+        2.<figure>标签的作用:
+          - 元素代表一段独立的内容，它通常是文档中的插图、图表、照片、代码片段、视频、音频或其他自包含的媒体内容
+          - 除了 <img> 标签，<figure> 还可以包含其他媒体元素（如 <video>、<audio>）、表格 <table>、代码块 <pre> 等
+        4. <figcaption> 标签的作用:
+          - 提供标题或说明： <figcaption> 元素是 <figure> 元素的子元素，它为 <figure> 元素所包含的内容提供一个标题、图例或简短的说明。
+          - 与 <figure> 内容关联： 它明确地将标题与 <figure> 内的媒体内容关联起来。这种关联对于可访问性（Accessibility）尤其重要。
+          - 可访问性： 对于使用屏幕阅读器的用户来说，<figcaption> 提供了关于 <figure> 内容的文本描述。屏幕阅读器会识别并朗读 <figcaption> 的内容，
+            帮助视障用户理解图片或其他媒体的含义。这比仅仅依靠 alt 属性（alt 属性通常是图片的简短替代文本）提供了更丰富、更详细的描述。
+          - 搜索引擎优化 (SEO)： 搜索引擎可以更好地理解 <figure> 中的内容及其与 <figcaption> 的关系，有助于提高图片在图片搜索结果中的可见性。
+        -->
         <figure>
           <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
           <figcaption>Cats <em>love</em> lasagna.</figcaption>  
@@ -38,23 +87,73 @@
       </section>
       <section>
         <h2>Cat Form</h2>
+        <!-- 
+        form标签: 
+        1.表单标签
+        2.表单用于收集用户输入的数据(比如文本,选择,文件等),并将这些数据发送到服务器进行处理
+
+        <form action="https://freecatphotoapp.com/submit-cat-photo"> 
+        当Cat Form中的信息点击提交时,将表单数据将发送到https://freecatphotoapp.com/submit-cat-photo 这个服务器端地址。服务器端的程序（例如一个用 Python、PHP、Node.js 等编写的脚本）会接收并处理这些数据。
+        -->
         <form action="https://freecatphotoapp.com/submit-cat-photo">
+          <!-- 
+          fieldset标签的作用:将表单中的相关元素进行分组。它在视觉上通常会用一个边框将这些元素围绕起来，形成一个独立的区域。
+
+          使用fieldset标签的目的: 
+          1.语言化
+          2.可访问性
+
+          legend标签:
+          1. <legend> 元素是 <fieldset> 的标题或说明。它定义了 <fieldset> 元素内容的标题。
+          2.提供上下文,清晰地指示这一组表单控件是关于什么
+          3.浏览器通常会将 legend 的文本显示在 fieldset 的边框上，作为该区域的标题。
+          -->
           <fieldset>
             <legend>Is your cat an indoor or outdoor cat?</legend>
+            <!-- 
+            label标签定义来表单控件的文本标签,可以提高了表单的可用性和可访问性
+            如何使用label标签:
+            1.隐式关联:像你这里使用的，将 input 元素嵌套在 label 内部,这意味着用户可以点击“Indoor”这个文本来选中旁边的单选按钮
+            2.显式关联:使用 for 属性来明确地关联 label 和 input（label 的 for 属性值与 input 的 id 属性值相同）。
+              例如：<label for="indoor">Indoor</label><input id="indoor" ...>。
+
+            input的type属性决定了它在浏览器中呈现的控件类型以及它接受的数据类型:
+            1.文本输入类
+            2.选择/上传类
+            3.数值/范围/日期时间类
+            4.颜色/隐藏/按钮类
+
+            radio是一个单选按钮,同一 name 属性值的所有 radio 按钮构成一个组，用户只能选择其中一个,
+            在下面的代码中的name为indoor-outdoor,当用户只能选择indoor或者outdoor
+            -->
             <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor" checked> Indoor</label>
             <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
           </fieldset>
           <fieldset>
+            <!-- 
+            checkbox是复选框,用户可以选中或取消选中一个或多个选项。
+            -->
             <legend>What's your cat's personality?</legend>
+            <!-- 
+            checked: 这是一个布尔属性。如果存在，表示该复选框在页面加载时默认处于选中状态。在下面的代码中Loving 这个选项会默认被勾选。
+            -->
             <input id="loving" type="checkbox" name="personality" value="loving" checked> <label for="loving">Loving</label>
             <input id="lazy" type="checkbox" name="personality" value="lazy"> <label for="lazy">Lazy</label>
             <input id="energetic" type="checkbox" name="personality" value="energetic"> <label for="energetic">Energetic</label>
           </fieldset>
+          <!-- 
+          name="catphotourl": 这是该输入字段的名称。当用户提交表单时，这个 name 会作为键（key），用户输入的内容会作为值（value）一起发送到服务器。例如，如果用户输入了 https://example.com/cat.jpg，服务器将收到 catphotourl=https://example.com/cat.jpg 这样的数据
+
+          placeholder="cat photo URL": 这是输入框中的占位符文本。它在用户还没有输入任何内容时显示，用于提示用户应该输入什么类型的信息。一旦用户开始输入，占位符文本就会消失。在这个例子中，它提示用户应该输入一个猫咪照片的 URL。
+
+          required: 这是一个布尔属性。如果存在，表示这个输入字段必须填写。在表单提交之前，浏览器会进行客户端验证，如果这个字段为空，会阻止表单提交，并提示用户填写。这可以确保关键信息不会遗漏。
+          -->
           <input type="text" name="catphotourl" placeholder="cat photo URL" required>
           <button type="submit">Submit</button>
         </form>
       </section>
     </main>
+    <!--  <footer> 元素代表了其最近的祖先内容或整个文档的页脚。它通常包含版权信息、作者信息、联系方式、站点地图链接或相关文档链接。 -->
     <footer>
       <p>
         No Copyright - <a href="https://www.freecodecamp.org">freeCodeCamp.org</a>
